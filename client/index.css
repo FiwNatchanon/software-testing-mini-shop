@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --ink: #14201c;
+    --ink-soft: #2a3b34;
+    --ink-muted: #5c6f66;
+    --mist: #eef3f0;
+    --mist-soft: #f6f9f7;
+    --leaf: #1f6b52;
+    --leaf-bright: #278566;
+    --sand: #f3ebe0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans text-ink antialiased;
+    background:
+      radial-gradient(ellipse 80% 50% at 10% -10%, rgba(31, 107, 82, 0.14), transparent 55%),
+      radial-gradient(ellipse 60% 40% at 100% 0%, rgba(232, 217, 196, 0.55), transparent 50%),
+      radial-gradient(ellipse 50% 30% at 50% 100%, rgba(215, 228, 221, 0.7), transparent 60%),
+      linear-gradient(180deg, #f6f9f7 0%, #eef3f0 100%);
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: rgba(31, 107, 82, 0.22);
+  }
+}
+
+@layer components {
+  .page-enter {
+    @apply animate-rise;
+  }
+
+  .section-title {
+    @apply font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl;
+  }
+
+  .section-sub {
+    @apply mt-2 max-w-md text-ink-muted;
+  }
+
+  .surface {
+    @apply rounded-2xl border border-ink/5 bg-white/80 shadow-soft backdrop-blur-sm;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-ink/10 bg-mist-soft px-3.5 py-2.5 text-ink
+      outline-none transition placeholder:text-ink-muted/60
+      focus:border-leaf/40 focus:bg-white focus:ring-2 focus:ring-leaf/15;
+  }
+
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-ink-soft;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-xl bg-leaf px-5 py-2.5
+      font-semibold text-white shadow-soft transition
+      hover:-translate-y-0.5 hover:bg-leaf-bright hover:shadow-lift
+      active:translate-y-0;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center rounded-xl px-4 py-2
+      text-sm font-medium text-ink-soft transition
+      hover:bg-leaf-soft hover:text-leaf;
+  }
+
+  .nav-link {
+    @apply relative text-sm font-medium text-white/70 transition hover:text-white;
+  }
+
+  .nav-link::after {
+    content: "";
+    @apply absolute -bottom-1 left-0 h-0.5 w-0 rounded-full bg-sand transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .product-row {
+    @apply surface block p-5 transition duration-300
+      hover:-translate-y-0.5 hover:border-leaf/20 hover:shadow-lift;
+  }
+
+  .alert-error {
+    @apply rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700;
+  }
+
+  .alert-ok {
+    @apply rounded-xl border border-leaf/20 bg-leaf-soft px-4 py-3 text-sm text-leaf;
+  }
+}
